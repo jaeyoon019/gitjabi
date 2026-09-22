@@ -2,6 +2,7 @@
 // check(user): 통과면 true, 아직이면 falsy(→ fail 문구) 또는 실패 사유 문자열. 오류는 throw (app.js의 gh()가 처리)
 const REPO = 'gitjabi-practice';          // 모든 단계가 쓰는 실습 저장소 이름
 const UPLOAD_FILE = 'gitjabi-hello.txt';  // 업로드 단계 파일
+const UPLOAD_TEXT = 'gitjabi first upload';  // 업로드 파일에 넣을 문구. 영문이라 메모장 인코딩(ANSI/UTF-8)과 상관없이 읽힌다
 const CREATE_FILE = 'gitjabi-intro.md';   // 웹에서 만들기 단계 파일
 const BRANCH = 'feature/gitjabi';
 
@@ -50,14 +51,17 @@ const STEPS = [
     guide: (user) => `
       <p>내 컴퓨터에 있는 파일을 저장소에 올려 봅니다.</p>
       <ol>
-        <li>메모장에 <code>깃잡이 첫 업로드</code>라고 적어 <code>${UPLOAD_FILE}</code>로 저장합니다</li>
+        <li>메모장에 <code>${UPLOAD_TEXT}</code>라고 적어 <code>${UPLOAD_FILE}</code>로 저장합니다</li>
         <li>${repoLink(user)} 에서 <b>Add file</b> → <b>Upload files</b></li>
         <li><code>${UPLOAD_FILE}</code>를 끌어다 놓고 <b>Commit changes</b>를 누릅니다</li>
       </ol>
       <p class="hint">Create new file로 만들면 안 돼요. 꼭 Upload files로 올려 주세요.</p>`,
     check: async (user) => {
       // 파일이 지금 있는지 먼저 본다. 커밋 기록만 보면 삭제 메시지를 바꿨을 때 지운 파일도 통과한다
-      if (!(await gh(`/repos/${user}/${REPO}/contents/${UPLOAD_FILE}`))) return false;
+      const f = await gh(`/repos/${user}/${REPO}/contents/${UPLOAD_FILE}`);
+      if (!f) return false;
+      if (!decodeB64(f.content).toLowerCase().includes(UPLOAD_TEXT))
+        return `${UPLOAD_FILE} 내용에 "${UPLOAD_TEXT}"가 없어요. GitHub에서 파일을 열어 연필(✏️) 버튼으로 고쳐 주세요.`;
       const msg = (await addedCommit(user, UPLOAD_FILE))?.message;
       if (!msg) return false;
       return !msg.startsWith(createMsg(UPLOAD_FILE)) ||
@@ -112,9 +116,12 @@ const STEPS = [
         <li><b>Win + R</b> → <code>cmd</code> 입력 → Enter로 cmd 창을 엽니다</li>
         <li>설치됐는지 확인합니다. <code>git version …</code>이 나오면 성공
           ${cmd('git --version')}</li>
-        <li>커밋에 남길 내 이름과 이메일을 한 번만 설정합니다 (GitHub 아이디와 가입 이메일)
-          ${cmd('git config --global user.name "내 GitHub 아이디"', 'git config --global user.email "가입 이메일"')}</li>
+        <li>커밋에 남길 이름과 이메일을 한 번만 설정합니다
+          ${cmd('git config --global user.name "내 GitHub 아이디"', 'git config --global user.email "noreply 이메일"')}</li>
       </ol>
+      <p class="hint"><b>이메일은 개인 주소 대신 noreply 주소를 쓰세요.</b> 공개 저장소에서는 커밋에 적힌 이메일을 누구나 볼 수 있어요.
+        <a href="https://github.com/settings/emails" target="_blank" rel="noopener">github.com/settings/emails</a>에서
+        <b>Keep my email addresses private</b>를 켜면 <code>숫자+아이디@users.noreply.github.com</code> 주소가 보여요. 그 주소를 넣으면 됩니다.</p>
       <p class="hint">이 단계는 내 컴퓨터 안의 일이라 페이지가 확인할 수 없어요. 다 했으면 [다음]을 누르세요.</p>`,
   },
   {
@@ -151,7 +158,13 @@ const STEPS = [
       const c = await addedCommit(user, CLI_FILE);
       if (!c) return false;
       return c.committer.email !== WEB_COMMITTER ||
-        `${CLI_FILE}를 웹 화면에서 만들었어요. GitHub에서 파일을 지우고, cmd에서 git pull 후 다시 커밋·푸시해 주세요.`;
+        `${CLI_FILE}를 웹 화면에서 만든 것으로 확인됐어요. 이렇게 다시 해 주세요:\n` +
+        `① GitHub에서 ${CLI_FILE}를 열어 삭제(🗑️) → Commit changes\n` +
+        `② cmd에서 git pull\n` +
+        `③ echo gitjabi cli > ${CLI_FILE}\n` +
+        `④ git add ${CLI_FILE}\n` +
+        `⑤ git commit -m "Add ${CLI_FILE}"\n` +
+        `⑥ git push`;
     },
     fail: `${CLI_FILE}를 찾지 못했어요. git push까지 했는지, 오류 메시지가 없었는지 확인하세요.`,
   },
