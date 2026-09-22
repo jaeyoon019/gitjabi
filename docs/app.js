@@ -82,6 +82,7 @@ function render() {
   $('step-user').textContent = state.user;
   $('step-title').textContent = st.title;
   $('step-guide').innerHTML = st.guide(state.user);   // user는 USER_RE를 통과한 값만 들어온다
+  $('check-btn').textContent = st.check ? '완료했어요' : '다음';   // check가 없는 단계는 확인 없이 넘어간다
   show('step');
 }
 
@@ -115,12 +116,14 @@ $('user-input').onkeydown = (e) => { if (e.key === 'Enter') $('login-btn').click
 
 $('check-btn').onclick = () => busy($('check-btn'), async () => {
   const st = STEPS[state.step];
-  const res = await st.check(state.user);
-  if (res !== true) return say(typeof res === 'string' ? res : st.fail, 'error');   // 문자열이면 구체적 실패 사유
+  if (st.check) {
+    const res = await st.check(state.user);
+    if (res !== true) return say(typeof res === 'string' ? res : st.fail, 'error');   // 문자열이면 구체적 실패 사유
+  }
   state.step++;
   save();
   render();
-  if (state.step < STEPS.length) say(`✅ "${st.title}" 확인 완료!`, 'ok');
+  if (st.check && state.step < STEPS.length) say(`✅ "${st.title}" 확인 완료!`, 'ok');
 });
 
 $('resume-btn').onclick = render;

@@ -81,7 +81,9 @@ button.link { padding: 0; font-weight: 400; color: var(--muted); background: non
 
 #step-guide ol { padding-left: 1.4em; }
 #step-guide li { margin: 4px 0; }
-code { padding: 1px 6px; background: var(--code-bg); border-radius: 4px; font-size: 0.9em; }
+code { padding: 1px 6px; background: var(--code-bg); border-radius: 4px; font-size: 0.9em; font-family: Consolas, "D2Coding", ui-monospace, monospace; }
+pre { margin: 6px 0 10px; padding: 10px 12px; background: var(--code-bg); border-radius: 6px; overflow-x: auto; }
+pre code { padding: 0; background: none; white-space: pre; }   /* 명령어는 줄바꿈 없이, 넘치면 가로 스크롤 */
 a { color: #0969da; }
 @media (prefers-color-scheme: dark) { a { color: #4493f8; } }
 
