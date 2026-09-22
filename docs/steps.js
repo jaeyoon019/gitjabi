@@ -51,6 +51,8 @@ const STEPS = [
       </ol>
       <p class="hint">Create new file로 만들면 안 돼요. 꼭 Upload files로 올려 주세요.</p>`,
     check: async (user) => {
+      // 파일이 지금 있는지 먼저 본다. 커밋 기록만 보면 삭제 메시지를 바꿨을 때 지운 파일도 통과한다
+      if (!(await gh(`/repos/${user}/${REPO}/contents/${UPLOAD_FILE}`))) return false;
       const msg = await addedCommitMessage(user, UPLOAD_FILE);
       if (!msg) return false;
       return !msg.startsWith(createMsg(UPLOAD_FILE)) ||

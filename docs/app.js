@@ -70,7 +70,7 @@ function load() {
   let s;
   try { s = JSON.parse(raw); }
   catch { localStorage.removeItem(STORE_KEY); return null; }   // 깨진 저장값 → 버리고 처음부터
-  return s && USER_RE.test(s.user) && Number.isInteger(s.step) ? s : null;
+  return s && USER_RE.test(s.user) && Number.isInteger(s.step) && s.step >= 0 && s.step <= STEPS.length ? s : null;
 }
 
 function render() {
@@ -85,7 +85,7 @@ function render() {
   show('step');
 }
 
-// 버튼 하나 = API 호출 한 번. 처리 중에는 다시 못 누르게 막는다
+// 버튼 하나 = 그 단계 확인 한 번 (단계에 따라 API 1~2회). 처리 중에는 다시 못 누르게 막는다
 async function busy(btn, fn) {
   btn.disabled = true;
   try { await fn(); }
