@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>깃잡이 GitHub 실습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>깃잡이 GitHub 실습</h1>
+      <p class="sub">직접 해 보고, 페이지가 GitHub에서 결과를 확인합니다.</p>
+    </header>
+
+    <!-- 아이디 입력 -->
+    <section id="login" hidden>
+      <label for="user-input">GitHub 아이디</label>
+      <div class="row">
+        <input id="user-input" autocomplete="username" spellcheck="false" placeholder="예: octocat">
+        <button id="login-btn">시작하기</button>
+      </div>
+      <p class="hint">계정이 없으면 <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>에서 먼저 만드세요.</p>
+    </section>
+
+    <!-- 저장된 진행 이어하기 -->
+    <section id="resume" hidden>
+      <p><b id="resume-user"></b> 아이디로 진행하던 기록이 있어요.</p>
+      <div class="row">
+        <button id="resume-btn">이어서 하기</button>
+        <button id="switch-btn" class="secondary">다른 아이디로</button>
+      </div>
+    </section>
+
+    <!-- 단계 카드 -->
+    <section id="step" hidden>
+      <div class="progress"><div id="progress-bar"></div></div>
+      <p class="meta"><span id="step-count"></span> · <span id="step-user"></span> <button id="switch-btn2" class="link">다른 아이디로</button></p>
+      <h2 id="step-title"></h2>
+      <div id="step-guide"></div>
+      <button id="check-btn">완료했어요</button>
+    </section>
+
+    <!-- 수료 -->
+    <section id="done" hidden>
+      <div class="progress"><div style="width:100%"></div></div>
+      <h2>🎉 모든 단계를 마쳤어요</h2>
+      <p>저장소 만들기, 파일 올리기, 파일 만들기, 브랜치 만들기까지 직접 해 봤습니다.</p>
+      <button id="restart-btn" class="secondary">처음부터 다시</button>
+    </section>
+
+    <p id="msg" role="status" hidden></p>
+  </main>
+
+  <script src="steps.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
