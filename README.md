@@ -8,7 +8,7 @@ GitHub는 협업에 자주 쓰는 중요한 도구인데, 사용법을 아는 �
 
 ## 튜토리얼
 
-**https://jaeyoon019.github.io/gitjabi/** (준비 중)
+**https://gitjabi.vercel.app/**
 
 GitHub 아이디를 입력하고 안내대로 따라 하면, 페이지가 GitHub API로 결과를 확인해 다음 단계로 넘겨 줍니다.
 
@@ -37,7 +37,7 @@ GitHub 아이디를 입력하고 안내대로 따라 하면, 페이지가 GitHub
 ## 저장소 구조
 
 ```
-docs/      튜토리얼 웹페이지 (GitHub Pages로 배포)
+docs/      튜토리얼 웹페이지 (Vercel로 배포, main에 push하면 자동 반영)
 reviews/   팀원 사용 후기 (한 사람당 파일 하나)
 ```
 
