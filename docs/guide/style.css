@@ -553,3 +553,53 @@ tbody tr:last-child td { border-bottom: none; }
   .node { width: 100%; }
   .link-arrow .arrow-icon { transform: rotate(90deg); }
 }
+
+/* =====================================================
+   3번 페이지(개인 작업)용 추가 스타일
+   ===================================================== */
+
+/* 설명이 붙는 터미널: 왼쪽 명령어 / 오른쪽 작은 회색 설명 */
+.prose .terminal { margin: 14px 0 20px; }
+
+.terminal.cmds {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 22px;
+}
+
+.terminal .c { white-space: pre; }
+.terminal.cmds .note { font-size: 0.8rem; align-self: center; line-height: 1.5; }
+.terminal .full { grid-column: 1 / -1; }
+.terminal .out { color: #8b949e; white-space: pre; }
+
+/* 스크린샷을 원래 크기대로 (글자가 너무 커지지 않게) */
+.shot-scroll.fit { width: fit-content; max-width: 100%; }
+.shot-scroll.fit img { width: var(--w); max-width: none; }
+
+/* 상태 설명을 그림 아래 한 줄로 */
+.prose .shot + p { margin-top: 0; }
+
+/* 네 개의 공간 그림 */
+.flow.four .node { padding: 16px 8px; }
+.flow.four .node strong { font-size: 0.98rem; }
+.flow.four .link-arrow { min-width: 74px; }
+.flow.four .link-arrow small { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.74rem; color: var(--accent); }
+
+.where {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 -6px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.versus code { background: none; padding: 0; color: inherit; font-size: 0.93em; }
+.versus li { margin-bottom: 4px; }
+
+@media (max-width: 620px) {
+  .terminal.cmds { grid-template-columns: 1fr; }
+  .terminal.cmds .note { margin: -2px 0 8px 1.3em; }
+  .where { display: none; }
+}
