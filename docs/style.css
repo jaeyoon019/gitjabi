@@ -1,28 +1,37 @@
+/* 색·글꼴·모양은 git web/style.css와 맞춘다 */
 :root {
-  --bg: #f6f8fa;
+  --bg: #fafaf8;
   --card: #ffffff;
   --text: #1f2328;
-  --muted: #656d76;
-  --border: #d0d7de;
-  --accent: #1f883d;
+  --muted: #5f6872;
+  --border: #e3e3de;
+  --accent: #f05032;       /* Git 로고의 주황색 계열 */
+  --accent-soft: #fdeae5;
+  --code-accent: #b8341b;  /* accent-soft 위 코드 글자. accent는 대비가 3.1:1이라 더 진하게 (5.1:1) */
   --accent-text: #ffffff;
+  --button-bg: #c93a1f;    /* accent는 흰 글자 대비가 4.5:1에 못 미쳐 버튼만 더 진하게 */
   --error-bg: #ffebe9;
   --error: #cf222e;
   --ok-bg: #dafbe1;
-  --code-bg: #eff1f3;
+  --code-bg: #1f2328;
+  --code-text: #e8e8e3;
+  --radius: 14px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0d1117;
-    --card: #161b22;
-    --text: #e6edf3;
-    --muted: #8d96a0;
-    --border: #30363d;
-    --accent: #238636;
+    --bg: #14161a;
+    --card: #1c1f25;
+    --text: #e8e8e3;
+    --muted: #9aa3ad;
+    --border: #2d3139;
+    --accent: #ff6a4d;
+    --accent-soft: #2e1c18;
+    --code-accent: #ff6a4d;
     --error-bg: #3c1618;
     --error: #ff7b72;
     --ok-bg: #0f2e1a;
-    --code-bg: #262c36;
+    --code-bg: #0d0f12;
+    --code-text: #e8e8e3;
   }
 }
 
@@ -31,21 +40,55 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.6 -apple-system, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  line-height: 1.7;
   word-break: keep-all;               /* 한글을 단어 중간에서 끊지 않는다 */
   overflow-wrap: anywhere;            /* 긴 URL·아이디는 넘치지 않게 */
+  -webkit-font-smoothing: antialiased;
 }
-main { max-width: 640px; margin: 0 auto; padding: 32px 16px 64px; }
-header h1 { margin: 0; font-size: 1.6rem; }
-.sub { margin: 4px 0 24px; color: var(--muted); }
+.wrap, main { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+
+/* 상단 바·하단 (git web과 같은 모양) */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.site-nav .wrap { display: flex; align-items: center; height: 56px; }
+.brand { font-weight: 800; font-size: 1.05rem; text-decoration: none; }
+.brand span { color: var(--accent); }
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+  padding: 28px 0 48px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.page-head { padding: 40px 0 8px; }
+.eyebrow {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin: 0 0 14px;
+}
+.page-head h1 { font-size: clamp(2rem, 6vw, 2.8rem); line-height: 1.2; letter-spacing: -0.03em; margin: 0 0 10px; }
+.lead { font-size: 1.1rem; color: var(--muted); max-width: 34em; margin: 0 0 24px; }
 
 section {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 20px;
 }
-h2 { margin: 8px 0 12px; font-size: 1.3rem; }
+h2 { margin: 8px 0 12px; font-size: 1.3rem; letter-spacing: -0.02em; }
 label { font-weight: 600; }
 .row { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
 .hint, .meta { color: var(--muted); font-size: 0.9rem; }
@@ -54,39 +97,39 @@ label { font-weight: 600; }
 input {
   flex: 1;
   min-width: 0;
-  padding: 8px 12px;
+  padding: 8px 16px;
   font: inherit;
   color: var(--text);
   background: var(--bg);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 999px;
 }
 button {
-  padding: 8px 16px;
+  padding: 8px 20px;
   font: inherit;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--accent-text);
-  background: var(--accent);
+  background: var(--button-bg);
   border: 0;
-  border-radius: 6px;
+  border-radius: 999px;
   cursor: pointer;
 }
+button:hover { filter: brightness(1.08); }
 button:disabled { opacity: 0.6; cursor: wait; }
 button.secondary { color: var(--text); background: var(--bg); border: 1px solid var(--border); }
 button.link { padding: 0; font-weight: 400; color: var(--muted); background: none; text-decoration: underline; }
 #check-btn { margin-top: 16px; width: 100%; }
 
-.progress { height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+.progress { height: 8px; background: var(--accent-soft); border-radius: 999px; overflow: hidden; }
 .progress > div { height: 100%; background: var(--accent); transition: width 0.3s; }
 
 #step-guide ol { padding-left: 1.4em; }
 #step-guide li { margin: 4px 0; }
-code { padding: 1px 6px; background: var(--code-bg); border-radius: 4px; font-size: 0.9em; font-family: Consolas, "D2Coding", ui-monospace, monospace; }
-pre { margin: 6px 0 10px; padding: 10px 12px; background: var(--code-bg); border-radius: 6px; overflow-x: auto; }
-pre code { padding: 0; background: none; white-space: pre; }   /* 명령어는 줄바꿈 없이, 넘치면 가로 스크롤 */
-a { color: #0969da; }
-@media (prefers-color-scheme: dark) { a { color: #4493f8; } }
+code { padding: 1px 6px; background: var(--accent-soft); color: var(--code-accent); border-radius: 6px; font-size: 0.9em; font-family: ui-monospace, "SF Mono", Menlo, Consolas, "D2Coding", monospace; }
+pre { margin: 6px 0 10px; padding: 12px 16px; background: var(--code-bg); color: var(--code-text); border-radius: var(--radius); overflow-x: auto; line-height: 1.9; }
+pre code { padding: 0; background: none; color: inherit; white-space: pre; }   /* 명령어는 줄바꿈 없이, 넘치면 가로 스크롤 */
+a { color: inherit; }
 
-#msg { margin-top: 16px; padding: 12px 16px; border-radius: 6px; white-space: pre-line; }   /* 복구 절차처럼 줄바꿈(\n) 있는 문구 */
+#msg { margin-top: 16px; padding: 12px 16px; border-radius: var(--radius); white-space: pre-line; }   /* 복구 절차처럼 줄바꿈(\n) 있는 문구 */
 #msg.error { background: var(--error-bg); color: var(--error); }
 #msg.ok { background: var(--ok-bg); }
