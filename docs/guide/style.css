@@ -603,3 +603,53 @@ tbody tr:last-child td { border-bottom: none; }
   .terminal.cmds .note { margin: -2px 0 8px 1.3em; }
   .where { display: none; }
 }
+
+/* 목차 */
+section[id] { scroll-margin-top: 64px; }
+
+.toc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px 14px;
+  margin: 24px 0 8px;
+}
+
+.toc-title { font-weight: 800; margin: 0 0 8px; }
+
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 20px;
+}
+
+.toc li { margin: 0; }
+
+.toc a {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  line-height: 1.45;
+}
+
+.toc a:hover { background: var(--accent-soft); }
+
+.toc b {
+  flex: none;
+  min-width: 1.4em;
+  color: var(--accent);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+}
+
+.toc small { display: block; color: var(--muted); font-size: 0.82rem; }
+
+@media (max-width: 620px) {
+  .toc ol { grid-template-columns: 1fr; }
+}

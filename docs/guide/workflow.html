@@ -34,6 +34,22 @@
       </p>
     </div>
 
+    <!-- 목차 -->
+    <nav class="toc" aria-label="이 페이지의 목차">
+      <p class="toc-title">이 페이지의 순서</p>
+      <ol>
+        <li><a href="#before"><b>1</b><span>시작하기 전에<small>터미널 열기, 폴더 이동, 기본 명령</small></span></a></li>
+        <li><a href="#windows"><b>2</b><span>Windows에서는 어떻게 다른가요<small>맥과 대응되는 명령, Windows 사용자용</small></span></a></li>
+        <li><a href="#spaces"><b>3</b><span>파일이 거치는 네 개의 공간<small>add, commit, push가 하는 일</small></span></a></li>
+        <li><a href="#cycle"><b>4</b><span>한 바퀴 돌아보기<small>수정부터 push까지 다섯 단계</small></span></a></li>
+        <li><a href="#status"><b>5</b><span>git status 읽는 법<small>색과 문구로 상태 알아보기</small></span></a></li>
+        <li><a href="#add-commit-push"><b>6</b><span>add, commit, push<small>각 명령의 결과 화면 읽기</small></span></a></li>
+        <li><a href="#message"><b>7</b><span>commit 메시지 쓰는 법<small>좋은 예와 나쁜 예</small></span></a></li>
+        <li><a href="#ignore"><b>8</b><span>올리면 안 되는 파일과 .gitignore<small>.DS_Store, 비밀 정보 막기</small></span></a></li>
+        <li><a href="#summary"><b>9</b><span>정리<small>이 페이지에서 기억할 것</small></span></a></li>
+      </ol>
+    </nav>
+
     <!-- 시작하기 전에 -->
     <section id="before">
       <h2>시작하기 전에</h2>
@@ -76,10 +92,91 @@
       <div class="callout">
         <p class="callout-title">Windows를 쓴다면</p>
         <p>
-          Git을 설치할 때 함께 들어오는 <strong>Git Bash</strong>에서 같은 명령을 그대로 쓰면 됩니다.
-          다만 <code>open .</code>은 <code>explorer .</code>로, 아래에서 나올 <code>.DS_Store</code>는 <code>Thumbs.db</code>로 바꿔 읽으세요.
+          git 명령(add, commit, push 등)은 맥과 똑같습니다. 터미널을 여는 방법과 몇몇 일반 명령만 다르니
+          바로 아래 <a href="#windows">“Windows에서는 어떻게 다른가요”</a>를 먼저 읽어 보세요.
         </p>
       </div>
+    </section>
+
+    <!-- Windows -->
+    <section id="windows">
+      <h2>Windows에서는 어떻게 다른가요</h2>
+      <p>
+        <code>git add</code>, <code>git commit</code>, <code>git push</code>, <code>git status</code> 같은 <strong>git 명령은 맥과 Windows가 완전히 같습니다.</strong>
+        다른 것은 터미널을 여는 방법, 그리고 파일을 다루는 일반 명령(<code>open .</code>, <code>touch</code> 등)입니다.
+        맥을 쓴다면 이 부분은 건너뛰어도 됩니다.
+      </p>
+
+      <h3>Git Bash로 열면 맥과 거의 같습니다</h3>
+      <p>
+        Windows용 Git(Git for Windows)을 설치하면 <strong>Git Bash</strong>라는 터미널이 함께 설치됩니다.
+        맥 터미널과 같은 계열의 명령을 쓰기 때문에 이 페이지의 명령을 거의 그대로 따라 할 수 있습니다.
+      </p>
+      <ul>
+        <li><strong>시작 메뉴에서 열기</strong> : Windows 키를 누르고 “Git Bash”를 검색해 엽니다. 열고 나서 <code>cd 폴더이름</code>으로 repo 폴더까지 이동합니다.</li>
+        <li><strong>폴더에서 바로 열기</strong> : 파일 탐색기에서 repo 폴더 안의 빈 곳을 마우스 오른쪽으로 눌러 <code>Git Bash Here</code> (또는 <code>Open Git Bash here</code>)를 고릅니다. 이미 그 폴더에 서 있는 상태로 열려서 <code>cd</code>가 필요 없습니다. Windows 11에서는 “추가 옵션 표시”를 눌러야 보이기도 합니다.</li>
+      </ul>
+
+      <h3>맥과 Windows 대응표</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>하는 일</th><th>macOS</th><th>Windows (Git Bash)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>터미널 열기</td><td><code>⌘ + Space</code> → “터미널”</td><td>Windows 키 → “Git Bash”</td></tr>
+            <tr><td>위치 확인, 이동, 목록</td><td><code>pwd</code> <code>cd</code> <code>ls -a</code></td><td>똑같음</td></tr>
+            <tr><td>지금 폴더를 창으로 열기</td><td><code>open .</code></td><td><code>explorer .</code></td></tr>
+            <tr><td>파일 만들기, 쓰기, 읽기</td><td><code>touch</code> <code>echo</code> <code>cat</code></td><td>똑같음</td></tr>
+            <tr><td>프롬프트 줄이기</td><td><code>PS1='$ '</code></td><td>똑같음</td></tr>
+            <tr><td>명령어 붙여넣기</td><td><code>⌘ + V</code></td><td>마우스 오른쪽 클릭, 또는 <code>Shift + Insert</code></td></tr>
+            <tr><td>vi에서 빠져나오기</td><td><code>Esc</code> → <code>:q!</code> → 엔터</td><td>똑같음</td></tr>
+            <tr><td>운영체제가 만드는 파일</td><td><code>.DS_Store</code></td><td><code>Thumbs.db</code>, <code>desktop.ini</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Git Bash의 프롬프트에는 <code>이름@컴퓨터 MINGW64 /c/폴더</code> 같은 글이 길게 붙어 보입니다.
+        캡처의 <code>$</code>와 모양은 다르지만 같은 것이니, 거슬리면 <code>PS1='$ '</code>로 줄이면 됩니다.
+      </p>
+
+      <h3>PowerShell이나 명령 프롬프트를 쓴다면</h3>
+      <p>
+        git 명령은 그대로 되지만, 파일을 다루는 일반 명령의 이름이 다릅니다.
+        가능하면 Git Bash를 쓰는 것이 편하고, 꼭 써야 한다면 아래처럼 바꿔 읽으세요.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>하는 일</th><th>맥 / Git Bash</th><th>PowerShell</th><th>명령 프롬프트(cmd)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>현재 위치</td><td><code>pwd</code></td><td><code>pwd</code></td><td><code>cd</code> (이동 없이 입력)</td></tr>
+            <tr><td>숨김 파일까지 목록</td><td><code>ls -a</code></td><td><code>ls -Force</code></td><td><code>dir /a</code></td></tr>
+            <tr><td>폴더를 창으로 열기</td><td><code>open .</code></td><td><code>explorer .</code></td><td><code>explorer .</code></td></tr>
+            <tr><td>빈 파일 만들기</td><td><code>touch memo.txt</code></td><td><code>New-Item memo.txt</code></td><td><code>type nul &gt; memo.txt</code></td></tr>
+            <tr><td>파일 내용 보기</td><td><code>cat memo.txt</code></td><td><code>Get-Content memo.txt</code></td><td><code>type memo.txt</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <p class="callout-title">PowerShell에서 <code>&gt;</code>로 파일을 만들 때 주의</p>
+        <p>
+          Windows에 기본 들어 있는 PowerShell(5.x)은 <code>echo "hello" &gt; memo.txt</code>로 만든 파일을 다른 글자 형식(UTF-16)으로 저장합니다.
+          그러면 한글이 깨지거나 Git이 텍스트 파일로 인식하지 못할 수 있습니다. 이 페이지의 <code>echo</code> 실습은 Git Bash에서 하세요.
+        </p>
+      </div>
+
+      <h3>add할 때 나오는 줄바꿈 경고</h3>
+      <p>Windows에서 <code>git add</code>를 하면 이런 경고가 나올 때가 있습니다.</p>
+      <div class="terminal filelist">
+<span class="out">warning: in the working copy of 'memo.txt', LF will be replaced by CRLF the next time Git touches it</span>
+      </div>
+      <p>
+        Windows와 맥은 줄을 나누는 방식이 달라서 Git이 알려 주는 안내입니다. <strong>오류가 아니니 무시해도 됩니다.</strong>
+        add와 commit은 정상적으로 끝납니다.
+      </p>
     </section>
 
     <!-- 네 개의 공간 -->
