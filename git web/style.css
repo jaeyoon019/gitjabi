@@ -476,6 +476,31 @@ tbody tr:last-child td { border-bottom: none; }
   text-align: center;
 }
 
+/* 번호 안내 목록 (그림 아래) */
+.prose .legend {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 8px 16px;
+}
+
+.prose .legend li { margin: 0; font-size: 0.93rem; }
+
+.legend b {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-right: 8px;
+  border: 2px solid var(--accent);
+  border-radius: 7px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
 /* 그림(왼쪽)과 설명(오른쪽)을 나란히 */
 .split {
   display: grid;
