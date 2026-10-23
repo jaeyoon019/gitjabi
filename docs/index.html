@@ -7,11 +7,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- 상단 바: git web과 같은 모양. git web이 배포되면 메뉴 링크를 추가한다 -->
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">깃<span>잡이</span></a>
+    </div>
+  </header>
+
   <main>
-    <header>
+    <div class="page-head">
+      <p class="eyebrow">GitHub 실습</p>
       <h1>깃잡이 GitHub 실습</h1>
-      <p class="sub">직접 해 보고, 페이지가 GitHub에서 결과를 확인합니다.</p>
-    </header>
+      <p class="lead">직접 해 보고, 페이지가 GitHub에서 결과를 확인합니다.</p>
+    </div>
 
     <!-- 아이디 입력 -->
     <section id="login" hidden>
@@ -51,6 +59,10 @@
 
     <p id="msg" role="status" hidden></p>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap">깃잡이 · 팀 문제해결 프로젝트</div>
+  </footer>
 
   <script src="steps.js"></script>
   <script src="app.js"></script>
