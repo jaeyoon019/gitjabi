@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>GitHub 화면 살펴보기 · 깃잡이</title>
-  <meta name="description" content="GitHub 저장소 페이지의 맨 위 바, 탭 메뉴, repo 제목줄을 하나씩 설명한 페이지">
+  <meta name="description" content="GitHub 저장소 페이지의 맨 위 바, 탭 메뉴, repo 제목줄, 파일 목록, README 등을 하나씩 설명한 페이지">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -53,6 +53,8 @@
         <li><strong>탭 메뉴</strong>: 이 repo에서 할 수 있는 기능을 종류별로 모아 둔 줄입니다.</li>
         <li><strong>repo 제목줄</strong>: 이 repo의 이름과 공개 여부, Watch · Fork · Star 버튼이 있습니다.</li>
       </ul>
+
+      <p>그 아래로는 Code 탭의 본문(branch와 파일 검색 줄, 최근 commit, 파일 목록, README, 오른쪽 정보 영역)이 이어지고, 이것도 아래에서 차례로 설명합니다.</p>
 
       <div class="callout">
         <p class="callout-title">화면이 조금 다르게 보여도 괜찮아요</p>
@@ -230,6 +232,194 @@
       <div class="callout">
         <p class="callout-title">숫자가 0이어도 이상한 게 아니에요</p>
         <p>Watch, Fork, Star 옆의 숫자는 그 버튼을 누른 사람 수입니다. 새로 만든 repo는 모두 0에서 시작합니다.</p>
+      </div>
+    </section>
+
+    <!-- Code 탭 본문: branch · 검색 · Code 버튼 -->
+    <section id="code-toolbar">
+      <h2>4. branch · 파일 검색 · Code 버튼 줄</h2>
+      <p>여기서부터는 Code 탭을 열었을 때 보이는 본문입니다. 먼저 파일 목록 바로 위에 있는 한 줄입니다.</p>
+
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img src="images/github-code-toolbar.png" width="1825" height="171"
+               style="min-width: 700px"
+               alt="파일 목록 위의 한 줄. 왼쪽부터 main 브랜치 선택, 1 Branch, 0 Tags, 파일 검색창, Add file 버튼, 초록색 Code 버튼에 1번부터 6번까지 번호가 붙어 있다">
+        </div>
+        <figcaption>파일 목록 위의 한 줄</figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li>
+          <span class="badge">1</span>
+          <div><strong>branch 선택 (main ▾)</strong><span>지금 보고 있는 branch(작업 갈래)의 이름입니다. 처음에는 <code>main</code> 하나뿐이고, 눌러서 다른 branch로 바꾸면 아래 파일 목록도 그 branch 기준으로 바뀝니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">2</span>
+          <div><strong>1 Branch</strong><span>이 repo에 있는 branch의 개수입니다. 누르면 목록을 볼 수 있습니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">3</span>
+          <div><strong>0 Tags</strong><span>tag는 "v1.0"처럼 특정 시점의 commit에 붙이는 이름표(버전 표시)입니다. 쓰지 않으면 0이고, 처음에는 몰라도 됩니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">4</span>
+          <div><strong>Go to file</strong><span>파일 이름으로 repo 안의 파일을 바로 찾습니다. 오른쪽의 <code>T</code>는 단축키라서, 키보드에서 <code>T</code>를 누르면 바로 열립니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">5</span>
+          <div><strong>Add file</strong><span>웹에서 바로 새 파일을 만들거나(Create new file), 내 컴퓨터의 파일을 올릴 수 있습니다(Upload files).</span></div>
+        </li>
+        <li>
+          <span class="badge">6</span>
+          <div><strong>Code (초록 버튼)</strong><span>누르면 이 repo를 내 컴퓨터로 내려받을 때 쓰는 주소(clone 주소)를 복사하거나, ZIP 파일로 받을 수 있는 메뉴가 열립니다.</span></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 최근 commit -->
+    <section id="latest-commit">
+      <h2>5. 가장 최근 commit</h2>
+      <p>파일 목록 바로 위에는 이 branch에 마지막으로 반영된 commit의 정보가 한 줄로 나옵니다.</p>
+
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img src="images/github-commit-row.png" width="1825" height="214"
+               style="min-width: 700px"
+               alt="가장 최근 commit 줄. 작성자와 commit 메시지, 초록색 체크 표시, commit 번호와 시간, 13 Commits 버튼에 1번부터 4번까지 번호가 붙어 있다">
+        </div>
+        <figcaption>가장 최근 commit 줄</figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li>
+          <span class="badge">1</span>
+          <div><strong>작성자와 commit 메시지</strong><span>가장 최근 commit을 만든 사람과 그 commit에 적은 메시지입니다. 앞의 동그란 그림은 작성자의 프로필 이미지입니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">2</span>
+          <div><strong>상태 아이콘</strong><span>그 commit에 대한 자동 확인(배포 등)의 결과입니다. 초록 체크는 성공, 노란 점은 진행 중, 빨간 X는 실패를 뜻합니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">3</span>
+          <div><strong>번호와 시간</strong><span><code>86683b5</code>는 commit마다 붙는 고유 번호(해시)의 앞부분이고, <code>1 hour ago</code>는 올라온 시점입니다. 번호를 누르면 그 commit에서 무엇이 바뀌었는지 볼 수 있습니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">4</span>
+          <div><strong>13 Commits</strong><span>지금까지 쌓인 commit의 개수입니다. 누르면 누가 언제 무엇을 바꿨는지 전체 이력이 시간순으로 나옵니다.</span></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 파일 목록 -->
+    <section id="file-list">
+      <h2>6. 파일 목록</h2>
+      <p>이 repo에 들어 있는 폴더와 파일입니다. 폴더가 위에, 파일이 아래에 모여 있습니다.</p>
+
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img src="images/github-file-list.png" width="1825" height="353"
+               style="min-width: 700px"
+               alt="파일 목록. docs와 reviews 폴더, README.md 파일이 있고, 각 줄에 마지막 commit 메시지와 시간이 표시되어 있다. 이름, commit 메시지, 시간에 1번부터 3번까지 번호가 붙어 있다">
+        </div>
+        <figcaption>폴더 두 개와 파일 하나가 있는 목록</figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li>
+          <span class="badge">1</span>
+          <div><strong>폴더·파일 이름</strong><span>폴더 아이콘은 폴더, 문서 아이콘은 파일입니다. 이름을 누르면 폴더 안으로 들어가거나 파일 내용을 볼 수 있습니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">2</span>
+          <div><strong>마지막 commit 메시지</strong><span>그 폴더나 파일을 마지막으로 바꾼 commit의 메시지입니다. 어디가 최근에 바뀌었는지 한눈에 보입니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">3</span>
+          <div><strong>시간</strong><span>그 commit이 올라온 시점입니다. <code>last month</code>, <code>1 hour ago</code>처럼 지금을 기준으로 표시됩니다.</span></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- README -->
+    <section id="readme">
+      <h2>7. README</h2>
+      <p>
+        파일 목록 바로 아래에는 <code>README.md</code> 파일의 내용이 보기 좋게 표시됩니다.
+        repo를 열면 가장 먼저 읽게 되는 소개글이라서, 프로젝트가 무엇인지와 사용법을 적어 둡니다.
+        확장자 <code>.md</code>는 <code>#</code>, <code>-</code> 같은 간단한 표시로 제목과 목록을 만드는 Markdown 문서라는 뜻입니다.
+      </p>
+
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img src="images/github-readme.png" width="1825" height="461"
+               style="min-width: 700px"
+               alt="README 영역의 위쪽. README 제목줄, 연필 아이콘, 목차 아이콘에 1번부터 3번까지 번호가 붙어 있고, 아래에 프로젝트 소개 문장이 보인다">
+        </div>
+        <figcaption>README 영역의 위쪽</figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li>
+          <span class="badge">1</span>
+          <div><strong>README 제목줄</strong><span>아래에 보이는 내용이 README.md 파일이라는 표시입니다. 이 repo에서는 프로젝트를 소개하고 튜토리얼 주소를 안내하고 있습니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">2</span>
+          <div><strong>연필 아이콘</strong><span>README를 웹에서 바로 수정할 수 있는 버튼입니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">3</span>
+          <div><strong>목차 아이콘</strong><span>README의 제목들을 목차로 펼쳐 줍니다. 글이 길 때 원하는 부분으로 바로 이동할 수 있습니다.</span></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 오른쪽 정보 영역 -->
+    <section id="sidebar">
+      <h2>8. 오른쪽 정보 영역</h2>
+      <p>화면 오른쪽에는 이 repo에 대한 정보가 세로로 모여 있습니다. 위에서부터 차례로 살펴봅니다.</p>
+
+      <div class="split">
+        <figure class="shot">
+          <div class="shot-scroll">
+            <img src="images/github-sidebar.png" width="635" height="1334"
+                 alt="오른쪽 정보 영역. 위에서부터 About, Releases, Deployments, Packages, Contributors에 1번부터 5번까지 번호가 붙어 있다">
+          </div>
+          <figcaption>오른쪽 정보 영역</figcaption>
+        </figure>
+
+        <ol class="steps">
+          <li>
+            <span class="badge">1</span>
+            <div><strong>About</strong><span>repo의 소개 영역입니다. 한 줄 설명과 관련 링크를 적어 둘 수 있고, 이 repo에는 사이트 주소(<code>gitjabi.vercel.app</code>)가 걸려 있습니다. 아래의 Readme는 README로 이동, Activity는 최근 활동 보기이고, 그 아래 stars · watching · forks는 별, 지켜보는 사람, 복사해 간 횟수입니다.</span></div>
+          </li>
+          <li>
+            <span class="badge">2</span>
+            <div><strong>Releases</strong><span>버전별로 정리해 배포한 기록입니다. 아직 만든 것이 없어서 "No releases published"라고 보입니다.</span></div>
+          </li>
+          <li>
+            <span class="badge">3</span>
+            <div><strong>Deployments</strong><span>사이트나 앱이 자동으로 배포된 기록입니다. 이 repo는 <code>github-pages</code>와 <code>Production</code>으로 배포되고, 초록 체크는 성공, 옆의 숫자는 배포된 횟수입니다.</span></div>
+          </li>
+          <li>
+            <span class="badge">4</span>
+            <div><strong>Packages</strong><span>만든 코드를 라이브러리처럼 배포해 두는 곳입니다. 쓰지 않으면 비어 있습니다.</span></div>
+          </li>
+          <li>
+            <span class="badge">5</span>
+            <div><strong>Contributors</strong><span>이 repo에 commit을 남긴 사람들입니다. 옆의 숫자는 그 인원 수입니다.</span></div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="callout">
+        <p class="callout-title">처음에는 이것만</p>
+        <p>
+          <strong>파일 목록</strong>, <strong>README</strong>, 내려받을 때 쓰는 초록 <strong>Code 버튼</strong>,
+          <strong>branch 선택</strong> 네 가지만 알아도 repo를 읽고 따라 하기에 충분합니다.
+          나머지는 필요해질 때 하나씩 열어 보면 됩니다.
+        </p>
       </div>
     </section>
 

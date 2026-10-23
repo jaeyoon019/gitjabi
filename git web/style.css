@@ -476,6 +476,17 @@ tbody tr:last-child td { border-bottom: none; }
   text-align: center;
 }
 
+/* 그림(왼쪽)과 설명(오른쪽)을 나란히 */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-top: 18px;
+}
+
+.split .shot { margin: 0; }
+
 /* 용어 정리 카드 */
 .glossary {
   display: grid;
@@ -510,7 +521,8 @@ tbody tr:last-child td { border-bottom: none; }
 @media (max-width: 620px) {
   .compare,
   .versus,
-  .glossary { grid-template-columns: 1fr; }
+  .glossary,
+  .split { grid-template-columns: 1fr; }
 
   .flow { flex-direction: column; }
   .node { width: 100%; }
