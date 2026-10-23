@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GitHub 화면 살펴보기 · 깃잡이</title>
+  <meta name="description" content="GitHub 저장소 페이지의 맨 위 바, 탭 메뉴, repo 제목줄을 하나씩 설명한 페이지">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 상단 메뉴: 모든 페이지에 같은 메뉴를 넣습니다 -->
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">깃<span>잡이</span></a>
+      <a class="link" href="index.html">홈</a>
+      <a class="link" href="git-github.html">Git과 GitHub</a>
+      <a class="link" href="github-site.html" aria-current="page">GitHub 화면</a>
+      <a class="link" href="workflow.html">기본 흐름</a>
+      <a class="link" href="team.html">팀 작업</a>
+      <a class="link" href="undo.html">되돌리기</a>
+    </div>
+  </header>
+
+  <main class="wrap prose">
+
+    <!-- 제목 -->
+    <div class="page-head">
+      <p class="eyebrow">02 · GitHub 화면</p>
+      <h1>GitHub 화면 살펴보기</h1>
+      <p class="lead">
+        저장소(repo) 페이지를 열면 가장 먼저 보이는 화면을
+        위에서부터 하나씩 알아봅니다.
+      </p>
+    </div>
+
+    <!-- 전체 모습 -->
+    <section id="overview">
+      <h2>위쪽은 세 줄로 나뉩니다</h2>
+      <p>repo 페이지의 위쪽은 크게 세 부분입니다.</p>
+
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img src="images/github-top-overview.png" width="1600" height="186"
+               style="min-width: 760px"
+               alt="깃잡이 repo 화면의 위쪽. 맨 위 바, 탭 메뉴, repo 제목줄 세 줄이 표시되어 있다">
+        </div>
+        <figcaption>깃잡이 repo 화면의 위쪽</figcaption>
+      </figure>
+
+      <ul>
+        <li><strong>맨 위 바</strong>: 어느 화면에서나 보이는 공통 메뉴입니다. 검색, 새로 만들기, 알림, 프로필이 여기 있습니다.</li>
+        <li><strong>탭 메뉴</strong>: 이 repo에서 할 수 있는 기능을 종류별로 모아 둔 줄입니다.</li>
+        <li><strong>repo 제목줄</strong>: 이 repo의 이름과 공개 여부, Watch · Fork · Star 버튼이 있습니다.</li>
+      </ul>
+
+      <div class="callout">
+        <p class="callout-title">화면이 조금 다르게 보여도 괜찮아요</p>
+        <p>
+          스크린샷은 어두운 화면(다크 모드)이고, 밝은 화면에서도 구성은 같습니다.
+          GitHub는 화면을 자주 바꾸기 때문에 메뉴 이름이나 위치가 조금 다를 수 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 맨 위 바 -->
+    <section id="topbar">
+      <h2>1. 맨 위 바</h2>
+      <p>어느 repo를 열어도, 어느 화면으로 넘어가도 맨 위에 계속 보이는 줄입니다. 번호 순서대로 왼쪽부터 설명합니다.</p>
+
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img src="images/github-topbar.png" width="1780" height="208"
+               style="min-width: 760px"
+               alt="맨 위 바. 왼쪽부터 메뉴 버튼, GitHub 로고, 소유자와 repo 이름, 검색창, Copilot, 새로 만들기, 이슈와 풀 리퀘스트, 알림, 프로필 사진에 1번부터 9번까지 번호가 붙어 있다">
+        </div>
+        <figcaption>가운데 빈 공간은 생략했습니다</figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li>
+          <span class="badge">1</span>
+          <div><strong>메뉴 버튼</strong><span>눌러서 열리는 메뉴로 GitHub의 주요 화면으로 이동할 수 있습니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">2</span>
+          <div><strong>GitHub 로고</strong><span>누르면 GitHub 첫 화면(홈)으로 돌아갑니다. 로그인하면 처음 보이는 화면이 이곳입니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">3</span>
+          <div><strong>소유자 / repo 이름</strong><span>지금 보고 있는 repo가 누구의 어떤 repo인지 알려 줍니다. 이 repo는 <code>jaeyoon019</code>가 소유한 <code>gitjabi</code>입니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">4</span>
+          <div><strong>검색창</strong><span>repo, 코드, 사람을 찾습니다. 키보드에서 <code>/</code> 키를 누르면 바로 검색창으로 이동합니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">5</span>
+          <div><strong>Copilot</strong><span>GitHub의 AI 코딩 도우미를 여는 버튼입니다. 처음에는 몰라도 됩니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">6</span>
+          <div><strong>+ 버튼</strong><span>새 repo 같은 것을 만들 때 씁니다. 새 repo를 만들려면 여기서 <code>New repository</code>를 고릅니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">7</span>
+          <div><strong>Issues · Pull requests 아이콘</strong><span>내가 만들었거나 나에게 배정된 이슈와 Pull Request를 한 번에 모아 보는 바로가기입니다. 여러 repo에 참여할수록 편해집니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">8</span>
+          <div><strong>알림</strong><span>나에게 온 알림을 모아 봅니다. 리뷰 요청, 나를 언급한 댓글 같은 것이 여기에 쌓입니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">9</span>
+          <div><strong>프로필 사진</strong><span>누르면 내 프로필, 내 repo 목록, 설정, 로그아웃 메뉴가 열립니다.</span></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- 탭 메뉴 -->
+    <section id="tabs">
+      <h2>2. 탭 메뉴</h2>
+      <p>
+        이 repo에서 할 수 있는 기능이 탭으로 나뉘어 있습니다.
+        지금 보고 있는 탭에는 주황색 밑줄이 표시되고, 스크린샷에서는 <strong>Code</strong> 탭이 선택된 상태입니다.
+      </p>
+
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img src="images/github-tabs.png" width="2200" height="90"
+               style="min-width: 800px"
+               alt="탭 메뉴. 왼쪽부터 Code, Issues, Pull requests, Agents, Actions, Projects, Wiki, Security and quality, Insights, Settings">
+        </div>
+        <figcaption>왼쪽부터 Code · Issues · Pull requests · Agents · Actions · Projects · Wiki · Security and quality · Insights · Settings</figcaption>
+      </figure>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>탭</th><th>하는 일</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Code <span class="tag">자주 씀</span></th>
+              <td>파일과 폴더를 보는 기본 화면입니다. repo를 열면 처음 보이는 곳입니다.</td>
+            </tr>
+            <tr>
+              <th>Issues <span class="tag">자주 씀</span></th>
+              <td>할 일, 버그, 아이디어를 글로 등록하고 담당자를 정하는 게시판입니다. 팀 프로젝트에서 역할을 나눌 때 씁니다.</td>
+            </tr>
+            <tr>
+              <th>Pull requests <span class="tag">자주 씀</span></th>
+              <td>"내 변경을 합쳐 주세요"라는 요청이 모이는 곳입니다. 요청을 확인하고 의견을 남기고, 합치는 일까지 여기서 합니다.</td>
+            </tr>
+            <tr>
+              <th>Agents</th>
+              <td>AI(Copilot 코딩 에이전트)에게 작업을 맡기고 진행 상황을 확인하는 곳입니다. 처음에는 몰라도 됩니다.</td>
+            </tr>
+            <tr>
+              <th>Actions</th>
+              <td>코드를 올릴 때 테스트나 빌드 같은 작업을 자동으로 실행해 주는 기능입니다. 실행 기록도 여기서 봅니다.</td>
+            </tr>
+            <tr>
+              <th>Projects</th>
+              <td>할 일을 "할 일 / 진행 중 / 완료" 같은 보드로 관리하는 기능입니다.</td>
+            </tr>
+            <tr>
+              <th>Wiki</th>
+              <td>설명 문서를 따로 정리해 두는 공간입니다.</td>
+            </tr>
+            <tr>
+              <th>Security and quality</th>
+              <td>보안 경고와 코드 품질 점검 결과를 모아 보는 곳입니다. 예전에는 Security라는 이름이었습니다.</td>
+            </tr>
+            <tr>
+              <th>Insights</th>
+              <td>누가 얼마나 작업했는지, commit이 언제 쌓였는지 같은 활동 통계를 그래프로 보여 줍니다.</td>
+            </tr>
+            <tr>
+              <th>Settings</th>
+              <td>repo 이름, 공개 여부, 팀원 초대(Collaborators) 같은 관리 설정입니다. 관리 권한이 있는 사람에게만 보입니다.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <p class="callout-title">처음에는 세 개만</p>
+        <p>팀 프로젝트에서는 <strong>Code</strong>, <strong>Issues</strong>, <strong>Pull requests</strong> 세 탭을 가장 자주 씁니다. 나머지는 필요해질 때 하나씩 열어 보면 됩니다.</p>
+      </div>
+    </section>
+
+    <!-- repo 제목줄 -->
+    <section id="repo-title">
+      <h2>3. repo 제목줄</h2>
+      <p>탭 메뉴 바로 아래, 이 repo가 어떤 repo인지 알려 주는 줄입니다.</p>
+
+      <figure class="shot">
+        <div class="shot-scroll">
+          <img src="images/github-repo-title.png" width="1185" height="193"
+               style="min-width: 620px"
+               alt="repo 제목줄. 왼쪽에 repo 이름과 Public 표시, 오른쪽에 Watch, Fork, Star 버튼이 있고 1번부터 5번까지 번호가 붙어 있다">
+        </div>
+        <figcaption>가운데 빈 공간은 생략했습니다</figcaption>
+      </figure>
+
+      <ol class="steps">
+        <li>
+          <span class="badge">1</span>
+          <div><strong>repo 이름</strong><span>이 repo의 이름입니다. 앞의 동그란 그림은 소유자의 프로필 이미지입니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">2</span>
+          <div><strong>Public 표시</strong><span>누구나 볼 수 있는 공개 repo라는 뜻입니다. 비공개(Private)라면 초대받은 사람만 볼 수 있습니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">3</span>
+          <div><strong>Watch</strong><span>이 repo에 생기는 활동을 알림으로 받을지 정합니다. 옆의 숫자는 지켜보는 사람 수이고, 화살표로 알림 범위를 고를 수 있습니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">4</span>
+          <div><strong>Fork</strong><span>이 repo를 통째로 내 계정으로 복사해 가는 기능입니다. 오픈소스에 기여할 때 주로 쓰고, 팀 프로젝트에서는 거의 쓰지 않습니다. 숫자는 복사해 간 횟수입니다.</span></div>
+        </li>
+        <li>
+          <span class="badge">5</span>
+          <div><strong>Star</strong><span>마음에 드는 repo에 별을 달아 두는 북마크 겸 "좋아요"입니다. 숫자는 별을 누른 사람 수입니다.</span></div>
+        </li>
+      </ol>
+
+      <div class="callout">
+        <p class="callout-title">숫자가 0이어도 이상한 게 아니에요</p>
+        <p>Watch, Fork, Star 옆의 숫자는 그 버튼을 누른 사람 수입니다. 새로 만든 repo는 모두 0에서 시작합니다.</p>
+      </div>
+    </section>
+
+    <section id="pager">
+      <nav class="pager" aria-label="페이지 이동">
+        <a class="prev" href="git-github.html"><small>← 이전</small>Git과 GitHub</a>
+        <a class="next" href="workflow.html"><small>다음 →</small>기본 흐름</a>
+      </nav>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">깃잡이 · 팀 문제해결 프로젝트</div>
+  </footer>
+
+</body>
+</html>

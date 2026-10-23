@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Git과 GitHub · 깃잡이</title>
+  <meta name="description" content="Git과 GitHub가 각각 무엇인지, 왜 GitHub를 쓰는지 정리한 페이지">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 상단 메뉴: 모든 페이지에 같은 메뉴를 넣습니다 -->
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">깃<span>잡이</span></a>
+      <a class="link" href="index.html">홈</a>
+      <a class="link" href="git-github.html" aria-current="page">Git과 GitHub</a>
+      <a class="link" href="github-site.html">GitHub 화면</a>
+      <a class="link" href="workflow.html">기본 흐름</a>
+      <a class="link" href="team.html">팀 작업</a>
+      <a class="link" href="undo.html">되돌리기</a>
+    </div>
+  </header>
+
+  <main class="wrap prose">
+
+    <!-- 제목 -->
+    <div class="page-head">
+      <p class="eyebrow">01 · 기본 개념</p>
+      <h1>Git과 GitHub</h1>
+      <p class="lead">
+        이름이 비슷해서 같은 것처럼 보이지만 서로 다른 둘입니다.
+        각각 무엇이고, 왜 함께 쓰는지 알아봅니다.
+      </p>
+    </div>
+
+    <!-- 한눈에 보기 -->
+    <section id="overview">
+      <h2>한눈에 보기</h2>
+      <div class="compare">
+        <div class="compare-card">
+          <span class="tag">도구 · 프로그램</span>
+          <h3>Git</h3>
+          <p>내 컴퓨터에서 파일의 변경 이력을 기록하고 관리하는 프로그램입니다.</p>
+        </div>
+        <div class="compare-card">
+          <span class="tag">서비스 · 웹사이트</span>
+          <h3>GitHub</h3>
+          <p>Git으로 기록한 프로젝트를 인터넷에 올려 두고, 백업하고 공유하고 함께 작업하게 해 주는 웹 서비스입니다.</p>
+        </div>
+      </div>
+      <p>한 줄로 줄이면, Git은 <strong>기록하는 도구</strong>이고 GitHub는 그 기록을 <strong>올려 두는 곳</strong>입니다.</p>
+    </section>
+
+    <!-- 기본 용어 -->
+    <section id="terms">
+      <h2>기본 용어 정리</h2>
+      <p>
+        아래 설명에 자주 나오는 말들입니다. 지금 다 외울 필요는 없고,
+        읽다가 헷갈리면 여기로 돌아오세요.
+      </p>
+
+      <dl class="glossary">
+        <div class="term">
+          <dt>버전 관리 시스템<small>version control</small></dt>
+          <dd>파일이 바뀐 이력을 기록하고, 이전 상태를 확인하거나 되돌릴 수 있게 해 주는 도구입니다. Git이 대표적입니다.</dd>
+        </div>
+        <div class="term">
+          <dt>저장소<small>repository, repo</small></dt>
+          <dd>프로젝트 폴더와 그 변경 이력 전체를 담고 있는 공간입니다. 보통 줄여서 "repo(리포)"라고 부릅니다.</dd>
+        </div>
+        <div class="term">
+          <dt>commit<small>커밋</small></dt>
+          <dd>지금 상태를 메시지와 함께 기록해 두는 저장 지점입니다. 게임의 세이브 파일과 비슷합니다.</dd>
+        </div>
+        <div class="term">
+          <dt>로컬 · 원격 저장소<small>local · remote</small></dt>
+          <dd>로컬 저장소는 내 컴퓨터에 있는 저장소, 원격 저장소는 GitHub처럼 인터넷에 있는 저장소입니다.</dd>
+        </div>
+        <div class="term">
+          <dt>branch<small>브랜치</small></dt>
+          <dd>원래 작업 줄기에 영향을 주지 않고 따로 작업할 수 있게 만든 갈래입니다.</dd>
+        </div>
+        <div class="term">
+          <dt>Pull Request<small>PR</small></dt>
+          <dd>"내가 작업한 변경을 합쳐 주세요"라고 요청하는 것입니다. 팀원이 확인한 뒤 합칩니다.</dd>
+        </div>
+        <div class="term">
+          <dt>Issues<small>이슈</small></dt>
+          <dd>할 일, 버그, 아이디어를 글로 등록하고 담당자를 정하는 게시판입니다.</dd>
+        </div>
+        <div class="term">
+          <dt>Public · Private<small>공개 · 비공개</small></dt>
+          <dd>저장소를 누구나 볼 수 있게 할지(Public), 초대한 사람만 볼 수 있게 할지(Private) 정하는 설정입니다.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Git -->
+    <section id="git">
+      <h2>Git이란?</h2>
+      <p>
+        Git은 파일이 어떻게 바뀌어 왔는지를 기록해 주는 <strong>버전 관리 시스템</strong>입니다.
+        과제를 하다가 이런 파일 이름을 만들어 본 적이 있을 겁니다.
+      </p>
+
+      <div class="terminal filelist" aria-label="파일 이름 예시">
+        <div>보고서.docx</div>
+        <div>보고서_수정.docx</div>
+        <div>보고서_최종.docx</div>
+        <div>보고서_진짜최종.docx</div>
+        <div>보고서_진짜최종_제출용.docx</div>
+      </div>
+
+      <p>
+        파일을 복사해서 이름만 바꿔 저장하면 어느 것이 최신인지, 무엇이 달라졌는지 알기 어렵고,
+        여럿이 함께 고치면 더 엉킵니다. Git은 이 문제를 이렇게 풀어 줍니다.
+      </p>
+      <ul>
+        <li>파일은 하나만 두고, 의미 있는 시점마다 <strong>commit</strong>(저장 지점)을 남깁니다.</li>
+        <li>각 commit에는 누가, 언제, 무엇을 바꿨는지가 메시지와 함께 기록됩니다.</li>
+        <li>언제든 이전 commit의 상태를 확인하거나 그때로 되돌아갈 수 있습니다.</li>
+      </ul>
+      <p>게임에서 중요한 순간마다 세이브 파일을 남겨 두는 것과 비슷합니다.</p>
+
+      <h3>내 컴퓨터 안에서 동작합니다</h3>
+      <p>
+        Git은 프로젝트의 전체 이력을 <strong>내 컴퓨터에</strong> 통째로 가지고 있습니다.
+        그래서 인터넷이 없어도 commit하고 이력을 볼 수 있고, 계정도 필요 없습니다.
+        이런 방식을 분산 버전 관리라고 부릅니다.
+      </p>
+    </section>
+
+    <!-- GitHub -->
+    <section id="github">
+      <h2>GitHub란?</h2>
+      <p>
+        Git만 쓰면 기록이 내 컴퓨터에만 있습니다. 다른 사람과 나누거나 다른 곳에서 이어서 작업하려면
+        그 기록을 어딘가에 올려 두어야 하는데, 그 역할을 하는 대표적인 웹 서비스가 <strong>GitHub</strong>입니다.
+        Git 저장소(repository)를 인터넷에 보관해 주는 곳이라고 생각하면 됩니다.
+      </p>
+
+      <h3>GitHub가 더해 주는 것</h3>
+      <ul>
+        <li><strong>원격 저장소</strong>: 인터넷에 있는 저장소. 내 컴퓨터와 서로 내용을 주고받습니다.</li>
+        <li><strong>Pull Request</strong>: 내 변경을 합치기 전에 팀원이 확인하고 의견을 남기는 기능</li>
+        <li><strong>Issues</strong>: 할 일, 버그, 아이디어를 글로 등록하고 담당자를 정하는 게시판</li>
+        <li><strong>권한 관리</strong>: 공개(Public)와 비공개(Private) 설정, 팀원 초대</li>
+        <li><strong>GitHub Pages</strong>: 이 사이트 같은 정적 웹페이지를 무료로 공개하는 기능</li>
+      </ul>
+    </section>
+
+    <!-- 왜 GitHub -->
+    <section id="why">
+      <h2>왜 GitHub를 쓸까?</h2>
+      <p>Git만으로도 이력 관리는 되는데, 굳이 GitHub까지 쓰는 이유는 이렇습니다.</p>
+
+      <div class="reasons">
+        <div class="reason">
+          <h3>변경 이력과 되돌리기</h3>
+          <p>누가 언제 무엇을 바꿨는지 남고, 잘못되면 이전 상태로 돌아갈 수 있습니다.</p>
+        </div>
+        <div class="reason">
+          <h3>백업</h3>
+          <p>컴퓨터가 고장 나거나 잃어버려도, GitHub에 올려 둔 프로젝트는 그대로 남아 있습니다.</p>
+        </div>
+        <div class="reason">
+          <h3>함께 작업</h3>
+          <p>팀원이 각자 컴퓨터에서 작업하고 GitHub를 통해 합칩니다. 파일을 메신저로 주고받을 필요가 없습니다.</p>
+        </div>
+        <div class="reason">
+          <h3>리뷰와 기록</h3>
+          <p>Pull Request로 합치기 전에 서로 확인하고, Issues로 해야 할 일을 남길 수 있습니다.</p>
+        </div>
+        <div class="reason">
+          <h3>어디서든 이어서 작업</h3>
+          <p>다른 컴퓨터에서도 GitHub에 올려 둔 프로젝트를 내려받아 바로 이어서 작업할 수 있습니다.</p>
+        </div>
+        <div class="reason">
+          <h3>공개와 포트폴리오</h3>
+          <p>내 프로젝트를 공개해 보여 줄 수 있고, 수많은 오픈소스 프로젝트가 GitHub에서 운영됩니다.</p>
+        </div>
+      </div>
+
+      <h3>팀 프로젝트로 비교해 보면</h3>
+      <div class="versus">
+        <div class="bad">
+          <h3>GitHub 없이</h3>
+          <ul>
+            <li>파일을 메신저로 주고받으며 합칩니다.</li>
+            <li>어느 것이 최신인지 헷갈립니다.</li>
+            <li>합치다가 남의 수정을 덮어쓸 수 있습니다.</li>
+            <li>누가 무엇을 바꿨는지 알기 어렵습니다.</li>
+          </ul>
+        </div>
+        <div class="good">
+          <h3>GitHub와 함께</h3>
+          <ul>
+            <li>최신 상태가 GitHub에 하나로 모입니다.</li>
+            <li>각자 최신 내용을 받아 작업하고, 끝나면 GitHub에 올려 공유합니다.</li>
+            <li>충돌이 나면 Git이 알려 주고, 직접 정리합니다.</li>
+            <li>모든 변경이 commit 이력으로 남습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 오해 -->
+    <section id="myths">
+      <h2>자주 하는 오해</h2>
+      <ul>
+        <li><strong>Git과 GitHub는 같은 것이다?</strong> 아닙니다. Git은 도구이고, GitHub는 그 도구로 만든 저장소를 올려 두는 서비스입니다.</li>
+        <li><strong>GitHub가 없으면 Git을 못 쓴다?</strong> 쓸 수 있습니다. 내 컴퓨터에서만 이력을 관리하는 것도 Git의 정상적인 사용법입니다.</li>
+        <li><strong>GitHub는 개발자만 쓰는 곳이다?</strong> 코드가 아닌 문서나 글도 올릴 수 있고, 이 사이트처럼 웹페이지를 공개하는 데에도 쓰입니다.</li>
+      </ul>
+    </section>
+
+    <!-- 정리 -->
+    <section id="summary">
+      <div class="callout">
+        <p class="callout-title">정리</p>
+        <ul>
+          <li><strong>Git</strong>은 내 컴퓨터에서 변경 이력을 기록하는 도구입니다.</li>
+          <li><strong>GitHub</strong>는 그 기록을 인터넷에 올려 백업하고 함께 작업하게 해 주는 서비스입니다.</li>
+          <li>혼자라면 Git만으로도 되지만, 함께 작업하려면 GitHub 같은 서비스가 필요합니다.</li>
+        </ul>
+      </div>
+
+      <nav class="pager" aria-label="페이지 이동">
+        <a class="prev" href="index.html"><small>← 이전</small>홈</a>
+        <a class="next" href="github-site.html"><small>다음 →</small>GitHub 화면 살펴보기</a>
+      </nav>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">깃잡이 · 팀 문제해결 프로젝트</div>
+  </footer>
+
+</body>
+</html>
