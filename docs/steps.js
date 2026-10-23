@@ -33,7 +33,9 @@ async function addedCommit(user, file, branch) {
 const WEB_COMMITTER = 'noreply@github.com';
 const CLI_FILE = 'gitjabi-cli.txt';
 const cmd = (...lines) => `<pre><code>${lines.join('\n')}</code></pre>`;
-const PULL_FIRST = `<li>repo 폴더(<code>${REPO}</code>) 안에서, 먼저 GitHub의 최신 내용을 받아옵니다
+// 터미널 연습이 실패했을 때 덧붙이는 안내. 버튼을 다시 누를 때마다 GitHub 확인 횟수(시간당 60회)가 줄어서, 터미널에서 먼저 보게 한다
+const STATUS_TIP = '\n버튼을 다시 누르기 전에 터미널에서 git status로 먼저 확인해 보세요. 빨간 파일이 보이면 add 전, "ahead"가 보이면 아직 push 전이에요.';
+const PULL_FIRST =`<li>repo 폴더(<code>${REPO}</code>) 안에서, 먼저 GitHub의 최신 내용을 받아옵니다
           ${cmd('git pull')}</li>`;
 
 const GROUPS = [
@@ -107,7 +109,7 @@ const STEPS = [
       if (!decodeB64(f.content).includes('깃잡이')) return `${CREATE_FILE} 내용에 "깃잡이"가 없어요. 파일을 열어 연필(✏️) 버튼으로 고쳐 주세요.`;
       const msg = (await addedCommit(user, CREATE_FILE))?.message;
       return (msg && msg.startsWith(createMsg(CREATE_FILE))) ||
-        `${CREATE_FILE}를 웹에서 만든 게 아니에요. 파일을 지우고 Add file → Create new file로 다시 만들어 주세요 (commit 메시지는 기본값 그대로).`;
+        `${CREATE_FILE}를 웹에서 만들지 않았거나, commit 메시지를 기본값에서 바꿨어요. 파일을 지우고 Add file → Create new file로 다시 만들어 주세요 (commit 메시지는 기본값 ${createMsg(CREATE_FILE)} 그대로).`;
     },
     fail: `${CREATE_FILE}를 찾지 못했어요. 파일 이름과, Commit changes까지 눌렀는지 확인하세요.`,
   },
@@ -143,7 +145,10 @@ const STEPS = [
           ${cmd('git --version')}</li>
         <li>commit에 남길 이름과 이메일을 한 번만 설정합니다
           ${cmd('git config --global user.name "내 GitHub 아이디"', 'git config --global user.email "noreply 이메일"')}</li>
+        <li>제대로 설정됐는지 확인합니다. 방금 넣은 이름과 이메일이 한 줄씩 나오면 성공
+          ${cmd('git config --global user.name', 'git config --global user.email')}</li>
       </ol>
+      <p class="hint">이 설정을 빠뜨리면 나중에 commit할 때 <code>Author identity unknown</code> 오류가 나요. 그때는 이 연습의 설정 명령을 다시 입력하세요.</p>
       <p class="hint">맥은 Git Bash 대신 <b>터미널</b>(⌘ + Space → "터미널")을 쓰면 됩니다. 명령은 똑같아요.</p>
       <p class="hint"><b>이메일은 개인 주소 대신 noreply 주소를 쓰세요.</b> 공개 repo에서는 commit에 적힌 이메일을 누구나 볼 수 있어요.
         <a href="https://github.com/settings/emails" target="_blank" rel="noopener">github.com/settings/emails</a>에서
@@ -164,6 +169,7 @@ const STEPS = [
         <li>복사된 폴더로 들어가 파일 목록을 봅니다. GitHub에 있는 파일들이 보이면 성공
           ${cmd(`cd ${REPO}`, 'ls')}</li>
       </ol>
+      <p class="hint"><code>Repository not found</code>가 나오면 주소의 아이디·repo 이름에 오타가 없는지, repo가 Public인지 확인하세요.</p>
       <p class="hint">clone도 페이지가 확인할 수 없어요. 다음 연습에서 push가 되면 clone도 제대로 된 거예요.</p>`,
   },
   {
@@ -199,7 +205,7 @@ const STEPS = [
         `⑤ git commit -m "${CLI_FILE} 추가"\n` +
         `⑥ git push`;
     },
-    fail: `${CLI_FILE}를 찾지 못했어요. git push까지 했는지, 오류 메시지가 없었는지 확인하세요.`,
+    fail: `${CLI_FILE}를 찾지 못했어요. 파일 이름이 정확히 ${CLI_FILE}인지, git push까지 했는지 확인하세요.${STATUS_TIP}`,
   },
   {
     id: 'gitignore',
@@ -226,7 +232,7 @@ const STEPS = [
       return c.committer.email !== WEB_COMMITTER ||
         '.gitignore를 웹 화면에서 만든 것으로 확인됐어요. GitHub에서 .gitignore를 삭제한 뒤, 터미널에서 git pull부터 다시 해 주세요.';
     },
-    fail: '.gitignore를 찾지 못했어요. git push까지 했는지, 오류 메시지가 없었는지 확인하세요.',
+    fail: `.gitignore를 찾지 못했어요. 파일 이름이 점(.)으로 시작하는 .gitignore인지, git push까지 했는지 확인하세요.${STATUS_TIP}`,
   },
 
   // ---- 팀 작업: branch를 터미널에서 만들어 push하고, 웹에서 PR로 합친다 ----
@@ -249,9 +255,10 @@ const STEPS = [
       </ol>`,
     check: async (user) => {
       if (!(await gh(`/repos/${user}/${REPO}/branches/${encodeURIComponent(TEAM_BRANCH)}`)))
-        return `${TEAM_BRANCH} branch가 GitHub에 없어요. branch 이름과, git push -u origin ${TEAM_BRANCH}까지 했는지 확인하세요.`;
+        return `${TEAM_BRANCH} branch가 GitHub에 없어요. branch 이름이 정확히 ${TEAM_BRANCH}인지, git push -u origin ${TEAM_BRANCH}까지 했는지 확인하세요.\n` +
+          '터미널에서 git branch로 먼저 확인해 보세요. *가 붙은 것이 지금 branch예요.';
       const c = await addedCommit(user, TEAM_FILE, TEAM_BRANCH);
-      if (!c) return `${TEAM_BRANCH} branch에 ${TEAM_FILE}가 없어요. 파일을 만들고 add, commit한 뒤 다시 push해 주세요.`;
+      if (!c) return `${TEAM_BRANCH} branch에 ${TEAM_FILE}가 없어요. 파일 이름이 정확히 ${TEAM_FILE}인지 확인하고, add, commit한 뒤 다시 push해 주세요.${STATUS_TIP}`;
       return c.committer.email !== WEB_COMMITTER ||
         `${TEAM_FILE}를 웹 화면에서 만든 것으로 확인됐어요. 터미널에서 만들고 commit, push해 주세요.`;
     },
@@ -276,8 +283,10 @@ const STEPS = [
     check: async (user) => {
       const prs = await gh(`/repos/${user}/${REPO}/pulls?state=all&head=${encodeURIComponent(`${user}:${TEAM_BRANCH}`)}`);
       if (!prs || !prs.length) return false;
-      return prs.some(p => p.merged_at) ||
-        'PR은 있는데 아직 merge 전이에요. PR 화면에서 Merge pull request → Confirm merge를 눌러 주세요.';
+      if (prs.some(p => p.merged_at)) return true;
+      return prs.some(p => p.state === 'open')
+        ? 'PR은 있는데 아직 merge 전이에요. PR 화면에서 Merge pull request → Confirm merge를 눌러 주세요.'
+        : 'PR이 merge 없이 닫혔어요(Close). PR 화면에서 Reopen pull request를 누른 뒤 Merge pull request → Confirm merge를 눌러 주세요. Reopen이 안 되면 New pull request로 새로 만들어 주세요.';
     },
     fail: `${TEAM_BRANCH}에서 만든 PR을 찾지 못했어요. compare가 ${TEAM_BRANCH}인지 확인하세요.`,
   },
