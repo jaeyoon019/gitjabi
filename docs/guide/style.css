@@ -653,3 +653,46 @@ section[id] { scroll-margin-top: 64px; }
 @media (max-width: 620px) {
   .toc ol { grid-template-columns: 1fr; }
 }
+
+/* 명령어 표 */
+.cmd-table td:first-child { width: 40%; }
+.cmd-table td:first-child code { white-space: normal; }
+.tag.warn { background: var(--accent); color: #fff; margin-left: 6px; vertical-align: 1px; }
+.err-table td:first-child { width: 36%; }
+.err-table td:first-child code { white-space: normal; word-break: normal; overflow-wrap: break-word; }
+
+/* 터미널 명령 / Git 명령 구분 */
+.cmd-table.term thead th { background: var(--border); }
+.tag.gray { color: var(--muted); background: var(--border); }
+.compare-card .eg { margin-top: 12px; }
+
+.part-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 40px 0 0;
+  padding: 16px 20px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius);
+}
+
+.part-banner.git { border-color: var(--accent); background: var(--accent-soft); }
+
+.part-banner b {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--muted);
+  color: var(--bg);
+  font-size: 1.2rem;
+}
+
+.part-banner.git b { background: var(--accent); color: #fff; }
+.part-banner strong { display: block; font-size: 1.1rem; }
+.part-banner span { color: var(--muted); font-size: 0.92rem; }
+.part-banner code { background: none; padding: 0; color: var(--accent); }
+.part-banner + section { padding-top: 24px; }
