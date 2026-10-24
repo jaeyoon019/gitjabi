@@ -46,7 +46,8 @@ body {
   overflow-wrap: anywhere;            /* 긴 URL·아이디는 넘치지 않게 */
   -webkit-font-smoothing: antialiased;
 }
-.wrap, main { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+.wrap, main { max-width: 880px; margin: 0 auto; padding: 0 20px; }   /* 가이드 페이지와 같은 폭·여백 */
+main > section, #msg { max-width: 640px; }                          /* 입력·단계 카드는 읽기 좋게 좁게 */
 
 /* 상단 바·하단 (git web과 같은 모양) */
 .site-nav {
@@ -57,7 +58,11 @@ body {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border);
 }
-.site-nav .wrap { display: flex; align-items: center; height: 56px; }
+.site-nav .wrap { display: flex; align-items: center; gap: 8px; height: 56px; overflow-x: auto; white-space: nowrap; }
+.brand { margin-right: 12px; }
+.site-nav a.link { font-size: 0.92rem; color: var(--muted); text-decoration: none; padding: 6px 12px; border-radius: 999px; }
+.site-nav a.link:hover { background: var(--accent-soft); color: var(--text); }
+.site-nav a.link[aria-current="page"] { background: var(--accent-soft); color: var(--accent); font-weight: 700; }
 .brand { font-weight: 800; font-size: 1.05rem; text-decoration: none; }
 .brand span { color: var(--accent); }
 .site-footer {

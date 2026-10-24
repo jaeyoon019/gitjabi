@@ -20,6 +20,7 @@
       <a class="link" href="team.html">팀 작업</a>
       <a class="link" href="troubleshoot.html" aria-current="page">문제해결</a>
       <a class="link" href="commands.html">명령어 모음</a>
+      <a class="link" href="practice/index.html">실습</a>
     </div>
   </header>
 
@@ -114,6 +115,7 @@
             <tr><td><code>nothing added to commit but untracked files present</code></td><td>새 파일은 있는데 add를 하지 않았습니다.</td><td><code>git add 파일이름</code> 후 commit합니다.</td></tr>
             <tr><td><code>fatal: pathspec &#x27;…&#x27; did not match any files</code></td><td>적은 파일 이름을 찾지 못했습니다. 오타이거나 다른 폴더에 있습니다.</td><td><code>ls</code>로 파일 이름을 확인하고 Tab 자동완성을 씁니다.</td></tr>
             <tr><td><code>Aborting commit due to empty commit message.</code></td><td>commit 메시지 없이 vi를 빠져나와서 commit이 취소되었습니다.</td><td><code>git commit -m "메시지"</code>로 다시 칩니다.</td></tr>
+            <tr><td><code>Author identity unknown / *** Please tell me who you are. / fatal: unable to auto-detect email address</code></td><td>commit에 남길 이름과 이메일이 설정되어 있지 않아 commit이 만들어지지 않았습니다. (기록은 저장되지 않았으니 걱정하지 않아도 됩니다.)</td><td>이름과 이메일을 한 번 설정한 뒤 <code>git commit -m "메시지"</code>를 다시 칩니다.<br><code>git config --global user.name "이름"</code><br><code>git config --global user.email "메일주소"</code><br>메일은 GitHub 계정에 등록한 이메일, 또는 GitHub가 알려 주는 noreply 주소를 씁니다.</td></tr>
             <tr><td><code>error: src refspec main does not match any</code></td><td>commit이 하나도 없거나 branch 이름이 main이 아닙니다.</td><td>commit을 한 뒤 push합니다. <code>git branch</code>로 branch 이름을 확인합니다.</td></tr>
             <tr><td><code>fatal: The current branch … has no upstream branch.</code></td><td>이 branch를 GitHub의 어느 branch와 연결할지 정해지지 않았습니다.</td><td>안내문에 나온 <code>git push --set-upstream origin 이름</code>을 그대로 칩니다.</td></tr>
             <tr><td><code>! [rejected] main -&gt; main (fetch first)</code></td><td>GitHub에 내 컴퓨터에 없는 commit이 있어서 push가 막혔습니다.</td><td><code>git pull</code> 후 다시 <code>git push</code>합니다.</td></tr>
@@ -124,6 +126,7 @@
             <tr><td><code>fatal: remote origin already exists.</code></td><td>이미 GitHub 주소가 연결되어 있습니다.</td><td><code>git remote -v</code>로 연결된 주소를 확인합니다.</td></tr>
             <tr><td><code>fatal: Authentication failed / Support for password authentication was removed</code></td><td>GitHub는 계정 비밀번호로 push하는 것을 허용하지 않습니다.</td><td>브라우저 로그인 창이나 Personal Access Token(토큰)을 비밀번호 자리에 입력합니다.</td></tr>
             <tr><td><code>Permission denied / fatal: unable to access … 403</code></td><td>이 repo에 올릴 권한이 없습니다.</td><td>소유자에게 Collaborator로 초대받았는지 확인하고, 초대 메일이나 GitHub 알림에서 수락합니다.</td></tr>
+            <tr><td><code>remote: Repository not found. / fatal: repository '…' not found</code></td><td>GitHub가 그 주소의 repo를 찾지 못했습니다. 주소에 오타가 있거나, repo 이름이 바뀌었거나, 비공개 repo인데 내 계정에 권한이 없을 때 나옵니다. (권한이 없는 비공개 repo는 “없다”고 알려 줍니다.)</td><td><code>git remote -v</code>로 연결된 주소를 보고 GitHub 화면의 주소와 글자 하나까지 비교합니다. 다르면 <code>git remote set-url origin 올바른주소</code>로 고칩니다. 주소가 맞다면 Collaborator 초대를 수락했는지, 컴퓨터에 저장된 로그인이 다른 계정은 아닌지 확인합니다.</td></tr>
             <tr><td><code>warning: LF will be replaced by CRLF</code></td><td>Windows와 맥의 줄바꿈 방식이 달라서 나오는 안내입니다.</td><td>오류가 아니므로 무시해도 됩니다.</td></tr>
           </tbody>
         </table>
