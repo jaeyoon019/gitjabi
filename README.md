@@ -21,7 +21,7 @@ Git과 GitHub를 처음 쓰는 사람을 위해 필요한 것만 순서대로 �
 
 ## 실습 튜토리얼
 
-**https://gitjabi.vercel.app/**
+**https://gitjabi.vercel.app/guide/practice/**
 
 GitHub 아이디를 입력하고 목록에서 **원하는 연습을 골라** 해 봅니다. 다 했으면 페이지가 GitHub API로 결과를 확인해 완료로 표시합니다. 먼저 해야 하는 연습이 있으면 그 연습을 끝낼 때까지 잠겨 있습니다.
 
@@ -50,9 +50,10 @@ GitHub 아이디를 입력하고 목록에서 **원하는 연습을 골라** 해
 ## 저장소 구조
 
 ```
-docs/          실습 튜토리얼 (Vercel로 배포, main에 push하면 자동 반영)
-  guide/       사용 가이드 (gitjabi.vercel.app/guide/)
-reviews/       팀원 사용 후기 (한 사람당 파일 하나)
+docs/              Vercel로 배포 (main에 push하면 자동 반영). 첫 주소는 가이드로 넘어감
+  guide/           사용 가이드 (gitjabi.vercel.app/guide/)
+    practice/      실습 튜토리얼 (gitjabi.vercel.app/guide/practice/)
+reviews/           팀원 사용 후기 (한 사람당 파일 하나)
 ```
 
 ## 후기 올리는 법
