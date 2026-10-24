@@ -49,7 +49,7 @@ const STEPS = [
     id: 'create-repo',
     group: 'web',
     title: 'repo 만들기',
-    learn: 'guide/github-site.html',
+    learn: '../github-site.html',
     guide: (user) => `
       <p>repo(저장소)는 프로젝트 파일과 변경 기록을 담는 곳입니다. 다른 연습은 모두 이 repo에서 합니다.</p>
       <ol>
@@ -66,7 +66,7 @@ const STEPS = [
     group: 'web',
     title: '파일 업로드',
     needs: ['create-repo'],
-    learn: 'guide/github-site.html',
+    learn: '../github-site.html',
     guide: (user) => `
       <p>내 컴퓨터에 있는 파일을 repo에 올려 봅니다.</p>
       <ol>
@@ -93,7 +93,7 @@ const STEPS = [
     group: 'web',
     title: '웹에서 파일 만들기',
     needs: ['create-repo'],
-    learn: 'guide/github-site.html',
+    learn: '../github-site.html',
     guide: (user) => `
       <p>이번에는 파일을 GitHub 웹 화면에서 바로 만듭니다.</p>
       <ol>
@@ -118,7 +118,7 @@ const STEPS = [
     group: 'web',
     title: '웹에서 branch 만들기',
     needs: ['create-repo'],
-    learn: 'guide/team.html#branch',
+    learn: '../team.html#branch',
     guide: (user) => `
       <p>branch는 원본(main)을 건드리지 않고 따로 작업하는 갈래입니다.</p>
       <ol>
@@ -135,7 +135,7 @@ const STEPS = [
     id: 'git-setup',
     group: 'solo',
     title: 'Git 준비하기',
-    learn: 'guide/workflow.html#windows',
+    learn: '../workflow.html#windows',
     guide: () => `
       <p>이제부터는 웹 화면 대신 <b>터미널</b>에서 명령어로 GitHub를 다룹니다. 실제 협업에서는 대부분 이렇게 올려요.</p>
       <ol>
@@ -160,7 +160,7 @@ const STEPS = [
     group: 'solo',
     title: 'repo clone하기',
     needs: ['create-repo', 'git-setup'],
-    learn: 'guide/team.html#start',
+    learn: '../team.html#start',
     guide: (user) => `
       <p>clone은 GitHub에 있는 repo를 내 컴퓨터로 통째로 복사하는 것입니다.</p>
       <ol>
@@ -177,7 +177,7 @@ const STEPS = [
     group: 'solo',
     title: 'commit하고 push하기',
     needs: ['clone'],
-    learn: 'guide/workflow.html#add-commit-push',
+    learn: '../workflow.html#add-commit-push',
     guide: () => `
       <p>내 컴퓨터에서 바꾼 내용을 기록(commit)하고 GitHub로 올립니다(push).</p>
       <ol>
@@ -212,7 +212,7 @@ const STEPS = [
     group: 'solo',
     title: '.gitignore 만들기',
     needs: ['clone'],
-    learn: 'guide/workflow.html#ignore',
+    learn: '../workflow.html#ignore',
     guide: () => `
       <p>.gitignore는 "이 파일들은 올리지 마"라고 Git에게 알려 주는 목록입니다. 운영체제가 만드는 파일이나 비밀 정보가 실수로 올라가는 걸 막아요.</p>
       <ol>
@@ -241,7 +241,7 @@ const STEPS = [
     group: 'team',
     title: 'branch에서 작업하기',
     needs: ['clone'],
-    learn: 'guide/team.html#branch',
+    learn: '../team.html#branch',
     guide: () => `
       <p>main은 그대로 두고, 나만의 branch에서 작업해 GitHub에 올립니다. 다음 연습에서 이 branch를 Pull Request로 합쳐요.</p>
       <ol>
@@ -268,7 +268,7 @@ const STEPS = [
     group: 'team',
     title: 'Pull Request로 합치기',
     needs: ['branch-work'],
-    learn: 'guide/team.html#pr',
+    learn: '../team.html#pr',
     guide: (user) => `
       <p>Pull Request(PR)는 "내 branch의 작업을 main에 합쳐 주세요"라는 요청입니다. 명령어가 아니라 GitHub 화면에서 합니다.</p>
       <ol>
