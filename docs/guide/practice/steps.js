@@ -10,9 +10,9 @@ const TEAM_BRANCH = 'feature/gitjabi-team';  // 터미널에서 만들어 PR까�
 const TEAM_FILE = 'gitjabi-team.txt';
 
 // 업로드와 웹 생성은 API상 커밋 메시지 말고는 차이가 없다 (작성자·커미터·서명 모두 같음).
-// 웹 생성(Create new file)의 기본 메시지는 "Create <파일명>"으로 고정이지만,
-// 업로드의 기본 메시지는 일정하지 않다 ("Add files via upload"도, "Add content to <파일명>"도 실제로 나왔다).
-// 그래서 "Create <파일명>"인지 아닌지 하나로 가른다
+// 기본 메시지는 고정이 아니다. 웹 생성은 "Create <파일명>"도, "Add introductory content in <파일명>"도 실제로 나왔고
+// 업로드는 "Add files via upload"도, "Add content to <파일명>"도 나왔다 (Copilot 제안으로 추정).
+// 그래서 안내문에서 메시지를 직접 입력하게 하고(웹 생성 "Create <파일명>", 업로드 "Upload <파일명>"), "Create <파일명>"인지 아닌지 하나로 가른다
 const createMsg = (file) => `Create ${file}`;
 
 const repoLink = (user) =>
@@ -72,7 +72,7 @@ const STEPS = [
       <ol>
         <li>메모장에 <code>${UPLOAD_TEXT}</code>라고 적어 <code>${UPLOAD_FILE}</code>로 저장합니다</li>
         <li>${repoLink(user)} 에서 <b>Add file</b> → <b>Upload files</b></li>
-        <li><code>${UPLOAD_FILE}</code>를 끌어다 놓고 <b>Commit changes</b>를 누릅니다</li>
+        <li><code>${UPLOAD_FILE}</code>를 끌어다 놓고, commit 메시지 칸에 <code>Upload ${UPLOAD_FILE}</code>라고 입력한 뒤 <b>Commit changes</b>를 누릅니다</li>
       </ol>
       <p class="hint">Create new file로 만들면 안 돼요. 꼭 Upload files로 올려 주세요.</p>`,
     check: async (user) => {
@@ -102,14 +102,14 @@ const STEPS = [
         <li>내용에 <code>깃잡이</code>라는 단어를 넣어 자기소개를 한 줄 씁니다</li>
         <li><b>Commit changes...</b> → 다시 <b>Commit changes</b></li>
       </ol>
-      <p class="hint">commit 메시지는 기본값(<code>${createMsg(CREATE_FILE)}</code>) 그대로 두세요. 이 메시지로 "웹에서 만들었는지"를 확인해요.</p>`,
+      <p class="hint">commit 메시지 칸에 다른 문장이 자동으로 들어 있어도 지우고 <code>${createMsg(CREATE_FILE)}</code>로 직접 입력하세요. 이 메시지로 "웹에서 만들었는지"를 확인해요.</p>`,
     check: async (user) => {
       const f = await gh(`/repos/${user}/${REPO}/contents/${CREATE_FILE}`);
       if (!f) return false;
       if (!decodeB64(f.content).includes('깃잡이')) return `${CREATE_FILE} 내용에 "깃잡이"가 없어요. 파일을 열어 연필(✏️) 버튼으로 고쳐 주세요.`;
       const msg = (await addedCommit(user, CREATE_FILE))?.message;
       return (msg && msg.startsWith(createMsg(CREATE_FILE))) ||
-        `${CREATE_FILE}를 웹에서 만들지 않았거나, commit 메시지를 기본값에서 바꿨어요. 파일을 지우고 Add file → Create new file로 다시 만들어 주세요 (commit 메시지는 기본값 ${createMsg(CREATE_FILE)} 그대로).`;
+        `${CREATE_FILE}를 웹에서 만들지 않았거나, commit 메시지가 ${createMsg(CREATE_FILE)}로 시작하지 않아요. 파일을 지우고 Add file → Create new file로 다시 만들어 주세요 (commit 메시지 칸에 ${createMsg(CREATE_FILE)} 직접 입력).`;
     },
     fail: `${CREATE_FILE}를 찾지 못했어요. 파일 이름과, Commit changes까지 눌렀는지 확인하세요.`,
   },
